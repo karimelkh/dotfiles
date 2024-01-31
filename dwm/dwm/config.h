@@ -73,6 +73,10 @@ static const Layout layouts[] = {
 #define SHCMD(cmd) { .v = (const char*[]){ "/bin/sh", "-c", cmd, NULL } }
 
 /* commands */
+// brightness commands
+static const char *light_up[]   = { "light", "-A", "10", NULL };
+static const char *light_down[] = { "light", "-U", "10", NULL };
+
 // Volume Commands
 static const char *volume[3][4] = {
 	{ "pactl", "set-sink-volume", "@DEFAULT_SINK@", "+10%" },
@@ -122,7 +126,9 @@ static Key keys[] = {
 	TAGKEYS(                        XK_8,                      7)
 	TAGKEYS(                        XK_9,                      8)
 	{ MODKEY|ShiftMask,             XK_q,      quit,           {0} },
-        { 0,			        XK_Print,  spawn,	   {.v = prtscrcmd } },
+  { 0,			                      XK_Print,  spawn,	   {.v = prtscrcmd } },
+  { 0,                            XF86XK_MonBrightnessUp,   spawn, {.v = light_up   } },
+  { 0,                            XF86XK_MonBrightnessDown, spawn, {.v = light_down } }
 };
 
 /* button definitions */
