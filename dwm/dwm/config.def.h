@@ -2,7 +2,7 @@
 /*See LICENSE file for copyright and license details. */
 // THIS IS A CHANGE
 /* appearance */
-static const unsigned int borderpx  = 1;        /* border pixel of windows */
+static const unsigned int borderpx  = 2;        /* border pixel of windows */
 static const unsigned int gappx     = 6;        /* gaps between windows */
 static const unsigned int snap      = 32;       /* snap pixel */
 static const int showbar            = 1;        /* 0 means no bar */
@@ -136,7 +136,7 @@ static Key keys[] = {
   { 0,                            XF86XK_MonBrightnessDown, spawn, { .v = light_down } },
   { 0,                            XF86XK_AudioRaiseVolume,  spawn, { .v = audio_up   } },
   { 0,                            XF86XK_AudioLowerVolume,  spawn, { .v = audio_down } },
-  { 0,                            XF86XK_AudioMute,         spawn, SHCMD("$HOME/.dwm/scripts/audio_tgl.sh") }
+//  { 0,                            XF86XK_AudioMute,         spawn, SHCMD("$HOME/.dwm/scripts/audio_tgl.sh") }
 };
 
 /* button definitions */
