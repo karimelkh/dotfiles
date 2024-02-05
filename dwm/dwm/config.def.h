@@ -74,8 +74,8 @@ static const Layout layouts[] = {
 
 /* commands */
 // brightness commands
-static const char *light_up[]   = { "light", "-A", "10", NULL };
-static const char *light_down[] = { "light", "-U", "10", NULL };
+static const char *light_up[]   = { "light", "-A", "5", NULL };
+static const char *light_down[] = { "light", "-U", "5", NULL };
 
 // audio commands
 static const char *audio_up[]   = { "amixer", "set", "Master", "5%+",    NULL };
