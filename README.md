@@ -20,6 +20,7 @@
 ## Todos
 
 - add keybindings for:
-    - [ ] audio control
-    - [ ] brightness control
-    - [ ] capturing the screen
+    - [X] audio control -> amixer
+    - [X] brightness control -> light, brightnessctl
+    - [X] capturing the screen -> flameshot
+
