@@ -4,9 +4,13 @@ static const char *group = "karim";
 
 static const char *colorname[NUMCOLS] = {
 	[INIT] =   "black",     /* after initialization */
-	[INPUT] =  "#ba9773", /* during input */
-	[FAILED] = "#cc817c",   /* wrong password */
+	[INPUT] =  "#005577",   /* during input */
+	[FAILED] = "#CC3333",   /* wrong password */
+	[CAPS] = "#551A8B",     /* CapsLock on */
 };
 
 /* treat a cleared input like a wrong password (color) */
-static const int failonclear = 1;
+static const int failonclear = 0;
+
+/* Background image path, should be available to the user above */
+static const char* background_image = "/home/karim/.local/share/backgrounds/waves.png";

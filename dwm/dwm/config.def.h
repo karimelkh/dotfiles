@@ -11,11 +11,8 @@ static const int splitstatus        = 0;        /* 1 for split status items */
 static const char *splitdelim        = " | ";       /* Character used for separating status */
 static const char *fonts[]          = { "Hack Nerd Font:size=12" };
 static const char dmenufont[]       = "size=12";
-static const char col_gray3[]       = "#f1be9b";
-static const char col_gray1[]       = "#020914";
-static const char col_gray2[]       = "#a8856c";
-static const char col_gray4[]       = "#f1be9b";
-static const char col_cyan[]        = "#63576E";
+
+#include "color_schemes/default_one.h"
 
 static const unsigned int baralpha = 140;
 static const unsigned int borderalpha = 140;
@@ -55,11 +52,14 @@ static const int resizehints = 0;    /* 1 means respect size hints in tiled resi
 static const int attachbelow = 1;    /* 1 means attach after the currently active window */
 static const int lockfullscreen = 1; /* 1 will force focus on the fullscreen window */
 
+#include "fibonacci.c"
 static const Layout layouts[] = {
 	/* symbol     arrange function */
 	{ "[]=",      tile },    /* first entry is default */
 	{ "><>",      NULL },    /* no layout function means floating behavior */
 	{ "[M]",      monocle },
+	{ "(@)", spiral },  /* fibonacci - spiral  */
+	{ "[\\]", dwindle }, /* fibonacci - dwindle */
 };
 
 /* key definitions */
@@ -88,11 +88,10 @@ static const char *audio_down[] = { "amixer", "set", "Master", "5%-",    NULL };
 //static const char *audio_up[]   = { "amixer", "-D", "pulse", "sset", "Master", "5%+", NULL };
 //static const char *audio_down[] = { "amixer", "-D", "pulse", "sset", "Master", "5%-", NULL };
 
-// #define DEF_TERM "st"
-// #define DEF_TERM "kitty"
-#define DEF_TERM "alacritty"
-#define DEF_BROWSER "firefox"
-#define RWP_PATH "/home/karim/.dwm/scripts/refreshwp.sh"
+#define DEF_TERM     "alacritty"
+#define DEF_BROWSER  "firefox"
+#define DEF_FM       "ranger"
+#define RWP_PATH     "/home/karim/.dwm/scripts/refreshwp.sh"
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
@@ -100,14 +99,16 @@ static const char *termcmd[] = { DEF_TERM, NULL };
 static const char *browsercmd[] = { DEF_BROWSER, NULL };
 static const char *prtscrcmd[] = { "flameshot", "gui", NULL};
 static const char *refreshwpcmd[] = { RWP_PATH, NULL };
+static const char *fmcmd[] = { DEF_TERM, "-e", DEF_FM, NULL };
 
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
-	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = browsercmd } },
+	{ MODKEY,                       XK_w,      spawn,          {.v = browsercmd } },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = refreshwpcmd } },
+	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = fmcmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -123,6 +124,8 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
+	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
 	{ MODKEY|ShiftMask,             XK_space,  togglefloating, {0} },
 	{ MODKEY,                       XK_0,      view,           {.ui = ~0 } },
