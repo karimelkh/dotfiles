@@ -29,9 +29,17 @@
 
 ## SCREENSHOTS
 
-### dwm
+<!-- ### dwm -->
 
-![27-01-2024](screenshots/dwm/dwm-27-01-24.png)
+![](screenshots/dwm/dwm-27-01-24.png)
+![](screenshots/dwm/2024-02-18_14-42.png)
+![](screenshots/dwm/2024-02-18_14-44_1.png)
+![](screenshots/dwm/2024-02-18_14-45.png)
+![](screenshots/dwm/2024-02-18_14-46.png)
+![](screenshots/dwm/2024-02-18_14-49.png)
+![](screenshots/dwm/dwm-18-02-24.png)
+![](screenshots/dwm/dwm-05-02-24-21.png)
+![](screenshots/dwm/dwm-27-01-24.png)
 
 ## TODOS
 
