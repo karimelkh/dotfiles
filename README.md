@@ -1,3 +1,4 @@
+```
      _       _    __ _ _
   __| | ___ | |_ / _(_) | ___  ___
  / _` |/ _ \| __| |_| | |/ _ \/ __|
@@ -5,11 +6,12 @@
  \__,_|\___/ \__|_| |_|_|\___||___/
 
 ----[ Welcome To My Dotfiles ]----
+```
 
 ## KEYBINDINGS
 
 |      keybinding        |                   action                      |
-|:----------------------:|:---------------------------------------------:|
+|:-----------------------|:----------------------------------------------|
 | [ALT]+[P]              | run [dmenu](tools.suckless.org/dmenu)         |
 | [ALT]+[SHIFT]+[RATURN] | lauch terminal ([alacritty](alcritty.org))    |
 | [ALT]+[W]              | launch the web browser (firefox)              |
