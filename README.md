@@ -19,8 +19,10 @@
 | [ALT]+[T]                 | toggle tiled mode **[]=**                     |
 | [ALT]+[M]                 | toggle tiled mode **[M]**                     |
 | [ALT]+[F]                 | toggle floating mode **><>**                  |
-| [ALT]+[R]                 | toggle fibonacci mode **(@)**                 |
-| [ALT]+[SHIFT]+[R]         | toggle fibonacci mode **[\]**                 |
+| [ALT]+[R]                 | toggle fibonacci spiral mode **(@)**          |
+| [ALT]+[SHIFT]+[R]         | toggle fibonacci dwindle mode **[\]**         |
+| [ALT]+[U]                 | toggle centeredmaster mode **[M]**            |
+| [ALT]+[O]                 | toggle centeredfloatingmaster mode **|M|**    |
 | [ALT]+[B]                 | toggle bar                                    |
 | [ALT]+[SHIFT]+[Q]         | quit dwm                                      |
 | [ALT]+[D]                 | decrease number of windows in the master area |
