@@ -10,28 +10,32 @@
 
 ## KEYBINDINGS
 
-|      keybinding        |                   action                      |
-|:-----------------------|:----------------------------------------------|
-| [ALT]+[P]              | run [dmenu](tools.suckless.org/dmenu)         |
-| [ALT]+[SHIFT]+[RATURN] | lauch terminal ([alacritty](alcritty.org))    |
-| [ALT]+[W]              | launch the web browser (firefox)              |
-| [ALT]+[SHIFT]+[F]      | lauch file manager (ranger)                   |
-| [ALT]+[T]              | toggle tiled mode **[]=**                     |
-| [ALT]+[M]              | toggle tiled mode **[M]**                     |
-| [ALT]+[F]              | toggle floating mode **><>**                  |
-| [ALT]+[R]              | toggle fibonacci mode **(@)**                 |
-| [ALT]+[SHIFT]+[R]      | toggle fibonacci mode **[\]**                 |
-| [ALT]+[B]              | toggle bar                                    |
-| [ALT]+[SHIFT]+[Q]      | quit dwm                                      |
-| [ALT]+[D]              | decrease number of windows in the master area |
-| [ALT]+[I]              | increase number of windows in the master area |
-| [ALT]+[SHIFT]+[C]      | kill the focused window                       |
+|       keybinding          |                   action                      |
+|:--------------------------|:----------------------------------------------|
+| [ALT]+[P]                 | run [dmenu](tools.suckless.org/dmenu)         |
+| [ALT]+[SHIFT]+[RATURN]    | lauch terminal ([alacritty](alcritty.org))    |
+| [ALT]+[W]                 | launch the web browser (firefox)              |
+| [ALT]+[SHIFT]+[F]         | lauch file manager (ranger)                   |
+| [ALT]+[T]                 | toggle tiled mode **[]=**                     |
+| [ALT]+[M]                 | toggle tiled mode **[M]**                     |
+| [ALT]+[F]                 | toggle floating mode **><>**                  |
+| [ALT]+[R]                 | toggle fibonacci mode **(@)**                 |
+| [ALT]+[SHIFT]+[R]         | toggle fibonacci mode **[\]**                 |
+| [ALT]+[B]                 | toggle bar                                    |
+| [ALT]+[SHIFT]+[Q]         | quit dwm                                      |
+| [ALT]+[D]                 | decrease number of windows in the master area |
+| [ALT]+[I]                 | increase number of windows in the master area |
+| [ALT]+[SHIFT]+[C]         | kill the focused window                       |
+| [ALT]+[SHIFT]+[N]         | open a new note file                          |
+| [ALT]+[SHIFT]+[H]         | increase all gaps                             |
+| [ALT]+[SHIFT]+[L]         | decrease all gaps                             |
+| [ALT]+[SUPER]+[0]         | toogle gaps                                   |
+| [ALT]+[SUPER]+[SHIFT]+[0] | reset gaps back to default                    |
 
 ## SCREENSHOTS
 
 <!-- ### dwm -->
 
-![](screenshots/dwm/dwm-27-01-24.png)
 ![](screenshots/dwm/2024-02-18_14-42.png)
 ![](screenshots/dwm/2024-02-18_14-44_1.png)
 ![](screenshots/dwm/2024-02-18_14-45.png)
