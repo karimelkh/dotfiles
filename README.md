@@ -13,8 +13,10 @@
 |       keybinding        |                   action                      |
 |:------------------------|:----------------------------------------------|
 | ALT + P                 | run [dmenu](tools.suckless.org/dmenu)         |
-| ALT + SHIFT+ RATURN     | lauch terminal ([alacritty](alcritty.org))    |
+| ALT + SHIFT + RATURN    | lauch terminal ([alacritty](alcritty.org))    |
+| ALT + SHIFT + W         | change/refresh the wallpaper                  |
 | ALT + W                 | launch the web browser (firefox)              |
+| ALT + F                 | launch the email client (thunderbird)         |
 | ALT + SHIFT + F         | lauch file manager (ranger)                   |
 | ALT + T                 | toggle tiled mode **[]=**                     |
 | ALT + M                 | toggle tiled mode **\[M]**                    |
