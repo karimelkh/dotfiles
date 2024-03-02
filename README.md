@@ -38,18 +38,19 @@
 | SUPER + L               | lock the screen                               |
 
 
+## PATCHES
+
+### DWM
+### DMENU
+### SLSTATUS
+### ST
+### SLOCK
+
 ## SCREENSHOTS
 
-<!-- ### dwm -->
-
-![](screenshots/dwm/2024-02-18_14-42.png)
-<!-- ![](screenshots/dwm/2024-02-18_14-44_1.png) -->
-![](screenshots/dwm/2024-02-18_14-45.png)
-<!-- ![](screenshots/dwm/2024-02-18_14-46.png) -->
-![](screenshots/dwm/2024-02-18_14-49.png)
-<!-- ![](screenshots/dwm/dwm-18-02-24.png) -->
-![](screenshots/dwm/dwm-05-02-24-21.png)
-<!-- ![](screenshots/dwm/dwm-27-01-24.png) -->
+![screen-1](screenshots/dwm/dwm-05-02-24-21.png)
+![screen-2](screenshots/dwm/2024-02-18_14-42.png)
+![screen-3](screenshots/dwm/2024-02-18_14-45.png)
 
 [see more](./screenshots)
 
@@ -58,8 +59,9 @@
 
 * feh
 * wallset
+* picom
+* nitrogen
 * ...
-
 
 ## TODOS
 
@@ -67,5 +69,6 @@
     - [X] audio control -> amixer
     - [X] brightness control -> light, brightnessctl
     - [X] capturing the screen -> flameshot
-- [ ] re-install slock
+
+- [X] re-install slock
 
