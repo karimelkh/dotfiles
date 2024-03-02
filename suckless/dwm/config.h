@@ -102,13 +102,14 @@ static const char *audio_down[] = { "amixer", "set", "Master", "5%-",    NULL };
 //static const char *audio_up[]   = { "amixer", "-D", "pulse", "sset", "Master", "5%+", NULL };
 //static const char *audio_down[] = { "amixer", "-D", "pulse", "sset", "Master", "5%-", NULL };
 
-#define DEF_TERM     "alacritty"
-#define DEF_BROWSER  "firefox"
-#define DEF_EC       "thunderbird"
-#define DEF_FM       "ranger"
-#define DEF_NOTE     "nb edit note.md"
-#define NCMD_PATH    "/home/karim/.dwm/scripts/notecmd"
-#define RWP_PATH     "/home/karim/.dwm/scripts/refreshwp.sh"
+#define DEF_TERM	"alacritty"
+#define DEF_BROWSER	"firefox"
+#define DEF_EC		"thunderbird"
+#define DEF_FM		"ranger"
+#define DEF_NOTE	"nb edit note.md"
+#define DEF_LOCK	"slock"
+#define NCMD_PATH	"/home/karim/.dwm/scripts/notecmd"
+#define RWP_PATH	"/home/karim/.dwm/scripts/refreshwp.sh"
 
 static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() */
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
@@ -118,14 +119,16 @@ static const char *eccmd[] = { DEF_EC, NULL };
 static const char *prtscrcmd[] = { "flameshot", "gui", NULL};
 static const char *refreshwpcmd[] = { RWP_PATH, NULL };
 static const char *fmcmd[] = { DEF_TERM, "-e", DEF_FM, NULL };
-// static const char *notecmd[] = { DEF_TERM, "-e", DEF_NOTE, NULL};
-static const char *notecmd[] = { NCMD_PATH, NULL};
+static const char *lockcmd[] = { DEF_LOCK, NULL };
+static const char *notecmd[] = { DEF_TERM, "-e", DEF_NOTE, NULL};
+// static const char *notecmd[] = { NCMD_PATH, NULL};
 
 #include "movestack.c"
 static Key keys[] = {
 	/* modifier                     key        function        argument */
 	{ MODKEY,                       XK_p,      spawn,          {.v = dmenucmd } },
 	{ MODKEY|ShiftMask,             XK_Return, spawn,          {.v = termcmd } },
+	{ Mod4Mask,                     XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = eccmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = browsercmd } },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = refreshwpcmd } },
@@ -196,4 +199,3 @@ static Button buttons[] = {
 	{ ClkTagBar,            MODKEY,         Button1,        tag,            {0} },
 	{ ClkTagBar,            MODKEY,         Button3,        toggletag,      {0} },
 };
-
