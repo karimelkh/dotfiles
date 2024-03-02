@@ -16,10 +16,14 @@
 #include <unistd.h>
 #include <sys/types.h>
 #include <X11/extensions/Xrandr.h>
+#ifdef XINERAMA
 #include <X11/extensions/Xinerama.h>
+#endif
 #include <X11/keysym.h>
 #include <X11/Xlib.h>
 #include <X11/Xutil.h>
+#include <X11/Xft/Xft.h>
+#include <Imlib2.h>
 #include <X11/XKBlib.h>
 
 #include "arg.h"
@@ -366,10 +370,7 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
 			color = len ? (caps ? CAPS : INPUT) : (failure || failonclear ? FAILED : INIT);
 			if (running && oldc != color) {
 				for (screen = 0; screen < nscreens; screen++) {
-					XSetWindowBackground(dpy,
-					                     locks[screen]->win,
-					                     locks[screen]->colors[color]);
-					XClearWindow(dpy, locks[screen]->win);
+					drawlogo(dpy, locks[screen], color);
 					writemessage(dpy, locks[screen]->win, screen);
 				}
 				oldc = color;
