@@ -35,6 +35,7 @@
 | ALT + SHIFT + L         | decrease all gaps                             |
 | ALT + SUPER + 0         | toogle gaps                                   |
 | ALT + SUPER + SHIFT + 0 | reset gaps back to default                    |
+| SUPER + L               | lock the screen                               |
 
 
 ## SCREENSHOTS
