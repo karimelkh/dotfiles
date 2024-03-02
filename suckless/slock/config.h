@@ -1,16 +1,23 @@
 /* user and group to drop privileges to */
-static const char *user  = "karim";
-static const char *group = "karim";
+static const char *user  = "nobody";
+static const char *group = "nobody";
 
 static const char *colorname[NUMCOLS] = {
 	[INIT] =   "black",     /* after initialization */
 	[INPUT] =  "#005577",   /* during input */
 	[FAILED] = "#CC3333",   /* wrong password */
-	[CAPS] = "#551A8B",     /* CapsLock on */
+	[CAPS] = "red",         /* CapsLock on */
 };
 
 /* treat a cleared input like a wrong password (color) */
-static const int failonclear = 0;
+static const int failonclear = 1;
 
-/* Background image path, should be available to the user above */
-static const char* background_image = "/home/karim/.local/share/backgrounds/waves.png";
+/* default message */
+static const char * message = "Suckless: Software that sucks less.";
+
+/* text color */
+static const char * text_color = "#ffffff";
+
+/* text size (must be a valid size) */
+// static const char * font_name = "6x13";
+static const char * font_name = "fixed";

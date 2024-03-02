@@ -13,7 +13,6 @@
 #include <stdio.h>
 #include <string.h>
 #include <unistd.h>
-#include <time.h>
 #include <sys/types.h>
 #include <X11/extensions/Xrandr.h>
 #include <X11/extensions/Xinerama.h>
@@ -29,8 +28,6 @@ char *argv0;
 
 /* global count to prevent repeated error messages */
 int count_error = 0;
-
-static time_t locktime;
 
 enum {
 	INIT,
@@ -92,10 +89,22 @@ dontkillme(void)
 }
 #endif
 
+static int
+readescapedint(const char *str, int *i) {
+	int n = 0;
+	if (str[*i])
+		++*i;
+	while(str[*i] && str[*i] != ';' && str[*i] != 'm') {
+		n = 10 * n + str[*i] - '0';
+		++*i;
+	}
+	return n;
+}
+
 static void
 writemessage(Display *dpy, Window win, int screen)
 {
-	int len, line_len, width, height, s_width, s_height, i, j, k, tab_replace, tab_size;
+	int len, line_len, width, height, s_width, s_height, i, k, tab_size, r, g, b, escaped_int, curr_line_len;
 	XGCValues gr_values;
 	XFontStruct *fontinfo;
 	XColor color, dummy;
@@ -131,15 +140,22 @@ writemessage(Display *dpy, Window win, int screen)
 	len = strlen(message);
 
 	/* Max max line length (cut at '\n') */
-	line_len = 0;
+	line_len = curr_line_len = 0;
 	k = 0;
-	for (i = j = 0; i < len; i++) {
+	for (i = 0; i < len; i++) {
 		if (message[i] == '\n') {
-			if (i - j > line_len)
-				line_len = i - j;
+			curr_line_len = 0;
 			k++;
-			i++;
-			j = i;
+		} else if (message[i] == 0x1b) {
+			while (i < len && message[i] != 'm') {
+				i++;
+			}
+			if (i == len)
+				die("slock: unclosed escape sequence\n");
+		} else {
+			curr_line_len += XTextWidth(fontinfo, message + i, 1);
+			if (curr_line_len > line_len)
+				line_len = curr_line_len;
 		}
 	}
 	/* If there is only one line */
@@ -154,26 +170,41 @@ writemessage(Display *dpy, Window win, int screen)
 		s_width = DisplayWidth(dpy, screen);
 		s_height = DisplayHeight(dpy, screen);
 	}
-
 	height = s_height*3/7 - (k*20)/3;
-	width  = (s_width - XTextWidth(fontinfo, message, line_len))/2;
+	width  = (s_width - line_len)/2;
 
-	/* Look for '\n' and print the text between them. */
-	for (i = j = k = 0; i <= len; i++) {
-		/* i == len is the special case for the last line */
-		if (i == len || message[i] == '\n') {
-			tab_replace = 0;
-			while (message[j] == '\t' && j < i) {
-				tab_replace++;
-				j++;
-			}
-
-			XDrawString(dpy, win, gc, width + tab_size*tab_replace, height + 20*k, message + j, i - j);
-			while (i < len && message[i] == '\n') {
-				i++;
-				j = i;
+	line_len = 0;
+	/* print the text while parsing 24 bit color ANSI escape codes*/
+	for (i = k = 0; i < len; i++) {
+		switch (message[i]) {
+			case '\n':
+				line_len = 0;
+				while (message[i + 1] == '\t') {
+					line_len += tab_size;
+					i++;
+				}
 				k++;
-			}
+				break;
+			case 0x1b:
+				i++;
+				if (message[i] == '[') {
+					escaped_int = readescapedint(message, &i);
+					if (escaped_int == 39)
+						continue;
+					if (escaped_int != 38)
+						die("slock: unknown escape sequence%d\n", escaped_int);
+					if (readescapedint(message, &i) != 2)
+						die("slock: only 24 bit color supported\n");
+					r = readescapedint(message, &i) & 0xff;
+					g = readescapedint(message, &i) & 0xff;
+					b = readescapedint(message, &i) & 0xff;
+					XSetForeground(dpy, gc, r << 16 | g << 8 | b);
+				} else
+					die("slock: unknown escape sequence\n");
+				break;
+			default:
+				XDrawString(dpy, win, gc, width + line_len, height + 20 * k, message + i, 1);
+				line_len += XTextWidth(fontinfo, message + i, 1);
 		}
 	}
 
@@ -246,7 +277,6 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
 		caps = indicators & 1;
 
 	while (running && !XNextEvent(dpy, &ev)) {
-		running = !((time(NULL) - locktime < timetocancel) && (ev.type == MotionNotify));
 		if (ev.type == KeyPress) {
 			explicit_bzero(&buf, sizeof(buf));
 			num = XLookupString(&ev.xkey, buf, sizeof(buf), &ksym, 0);
@@ -289,9 +319,8 @@ readpw(Display *dpy, struct xrandr *rr, struct lock **locks, int nscreens,
 				caps = !caps;
 				break;
 			default:
-				if (controlkeyclear && iscntrl((int)buf[0]))
-					continue;
-				if (num && (len + num < sizeof(passwd))) {
+				if (num && !iscntrl((int)buf[0]) &&
+				    (len + num < sizeof(passwd))) {
 					memcpy(passwd + len, buf, num);
 					len += num;
 				}
@@ -387,7 +416,6 @@ lockscreen(Display *dpy, struct xrandr *rr, int screen)
 				XRRSelectInput(dpy, lock->win, RRScreenChangeNotifyMask);
 
 			XSelectInput(dpy, lock->root, SubstructureNotifyMask);
-			locktime = time(NULL);
 			return lock;
 		}
 
@@ -431,7 +459,7 @@ main(int argc, char **argv) {
 
 	ARGBEGIN {
 	case 'v':
-		fprintf(stderr, "slock-"VERSION"\n");
+		puts("slock-"VERSION);
 		return 0;
 	case 'm':
 		message = EARGF(usage());
