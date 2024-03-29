@@ -35,13 +35,19 @@ static const unsigned int alphas[][3]      = {
 	[SchemeSel]  = { OPAQUE, baralpha, borderalpha },
 };
 
-
 /* tagging */
-static const char *tags[] = { "", "", "", "", "󰑴", "󰇧", };
+// static const char *tags[] = { "", "", "", "", "󰑴", "󰇧", "", "", "", "", "󰶵", "󰮯", "", "󱍢" };
+// static const char *tags[] = { "", "", "", "", "", "󰈹", };
+static const char *tags[] = { "󰋜","", "󰮯", "", "", "" };
 // static const char *tags[] = { "", "", "󰚩", "", "󰂺", "", "", "", "", "", "", "", };
 // static const char *tags[] = { "", "󰣇", "󰈹", "󰂺", "", "", "󰚩", "󰌪", "" };
 // static const char *tags[] = { "", "", "", "󰻀", "", "󰑴", "󰇧", "󰈹", "󰀼", "󰣇", "", "󰲓", "󰌪", "" };
 // static const char *tags[] = { "󰈹", "󰣇", "󰻀", "", "", "󰀼", "󰌪", "" };
+
+static const unsigned int ulinepad	= 5;	/* horizontal padding between the underline and tag */
+static const unsigned int ulinestroke	= 2;	/* thickness / height of the underline */
+static const unsigned int ulinevoffset	= 0;	/* how far above the bottom of the bar the line should appear */
+static const int ulineall 		= 0;	/* 1 to show underline on all tags, 0 for just the active ones */
 
 static const Rule rules[] = {
 	/* xprop(1):
@@ -104,9 +110,11 @@ static const char *audio_down[] = { "amixer", "set", "Master", "5%-",    NULL };
 
 #define DEF_TERM	"alacritty"
 #define DEF_BROWSER	"firefox"
+#define DEF_PRVTWIN	"firefox --private-window"
 #define DEF_EC		"thunderbird"
 #define DEF_FM		"ranger"
 #define DEF_NOTE	"nb edit note.md"
+#define DEF_TODO	"nb edit todo.md"
 #define DEF_LOCK	"slock"
 #define NCMD_PATH	"/home/karim/.dwm/scripts/notecmd"
 #define RWP_PATH	"/home/karim/.dwm/scripts/refreshwp.sh"
@@ -115,12 +123,14 @@ static char dmenumon[2] = "0"; /* component of dmenucmd, manipulated in spawn() 
 static const char *dmenucmd[] = { "dmenu_run", "-m", dmenumon, "-fn", dmenufont, "-nb", col_gray1, "-nf", col_gray3, "-sb", col_cyan, "-sf", col_gray4, NULL };
 static const char *termcmd[] = { DEF_TERM, NULL };
 static const char *browsercmd[] = { DEF_BROWSER, NULL };
+static const char *prvtwincmd[] = { DEF_PRVTWIN, NULL };
 static const char *eccmd[] = { DEF_EC, NULL };
 static const char *prtscrcmd[] = { "flameshot", "gui", NULL};
 static const char *refreshwpcmd[] = { RWP_PATH, NULL };
 static const char *fmcmd[] = { DEF_TERM, "-e", DEF_FM, NULL };
 static const char *lockcmd[] = { DEF_LOCK, NULL };
 static const char *notecmd[] = { DEF_TERM, "-e", DEF_NOTE, NULL};
+static const char *todocmd[] = { DEF_TERM, "-e", DEF_TODO, NULL};
 // static const char *notecmd[] = { NCMD_PATH, NULL};
 
 #include "movestack.c"
@@ -131,9 +141,11 @@ static Key keys[] = {
 	{ Mod4Mask,                     XK_l,      spawn,          {.v = lockcmd } },
 	{ MODKEY,                       XK_e,      spawn,          {.v = eccmd } },
 	{ MODKEY,                       XK_w,      spawn,          {.v = browsercmd } },
+	{ MODKEY|ShiftMask,             XK_p,      spawn,          {.v = prvtwincmd } },
 	{ MODKEY|ShiftMask,             XK_w,      spawn,          {.v = refreshwpcmd } },
 	{ MODKEY|ShiftMask,             XK_f,      spawn,          {.v = fmcmd } },
 	{ MODKEY|ShiftMask,             XK_n,      spawn,          {.v = notecmd } },
+	{ MODKEY|ShiftMask,             XK_d,      spawn,          {.v = todocmd } },
 	{ MODKEY,                       XK_b,      togglebar,      {0} },
 	{ MODKEY,                       XK_j,      focusstack,     {.i = +1 } },
 	{ MODKEY,                       XK_k,      focusstack,     {.i = -1 } },
@@ -153,8 +165,9 @@ static Key keys[] = {
 	{ MODKEY,                       XK_t,      setlayout,      {.v = &layouts[0]} },
 	{ MODKEY,                       XK_f,      setlayout,      {.v = &layouts[1]} },
 	{ MODKEY,                       XK_m,      setlayout,      {.v = &layouts[2]} },
-        { MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
-        { MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
+//	{ MODKEY,                       XK_u,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY|ShiftMask,             XK_o,      setlayout,      {.v = &layouts[3]} },
+	{ MODKEY,                       XK_o,      setlayout,      {.v = &layouts[4]} },
 	{ MODKEY,                       XK_r,      setlayout,      {.v = &layouts[5]} },
 	{ MODKEY|ShiftMask,             XK_r,      setlayout,      {.v = &layouts[6]} },
 	{ MODKEY,                       XK_space,  setlayout,      {0} },
