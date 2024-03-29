@@ -16,7 +16,7 @@ static const int splitstatus        = 0;        /* 1 for split status items */
 static const char *splitdelim        = " | ";       /* Character used for separating status */
 // static const char *fonts[]          = { "Hack Nerd Font:size=12" };
 static const char *fonts[]          = { "Roboto Mono Nerd Font:size=12", "fontawesome:size=12" };
-static const char dmenufont[]       = "size=12";
+static const char dmenufont[]       = "Roboto Mono Nerd Font:size=12";
 
 #include "color_schemes/default_one.h"
 
