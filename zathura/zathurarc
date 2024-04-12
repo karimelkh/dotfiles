@@ -1,0 +1,10 @@
+set selection-clipboard clipboard
+set font "Roboto Mono Nerd Font"
+set adjust-open "width"
+set incremental-search true
+set page-padding 1
+set show-directories false
+set statusbar-home-tilde true
+set statusbar-page-percent true
+set window-title-basename true
+set recolor "true"

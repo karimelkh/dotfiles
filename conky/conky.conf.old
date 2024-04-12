@@ -1,0 +1,101 @@
+conky.config = {
+	alignment = 'middle_right',
+	xinerama_head = 1,
+	background = true,
+	cpu_avg_samples = 2,
+	xftalpha = 0.5,
+	default_color = 'white',
+	default_outline_color = 'white',
+	default_color = 'grey',
+	default_shade_color = 'red',
+	default_outline_color = 'green',
+	draw_borders = false,
+	draw_graph_borders = true,
+	draw_outline = false,
+	draw_shades = false,
+	use_xft = true,
+	font = 'Hack Nerd Font:size=11',
+	gap_x = 14,
+	gap_y = 0,
+	no_buffers = true,
+	minimum_width = 160, minimum_height = 5,
+	maximum_width = 400,
+	net_avg_samples = 2,
+	uppercase = false,
+	double_buffer = true,
+	out_to_console = false,
+	out_to_stderr = false,
+	extra_newline = false,
+	own_window = true,
+	own_window_class = 'Conky',
+	own_window_type = 'override', --For tilling window managers
+--	own_window_type = 'desktop',
+	own_window_transparent = false,
+	own_window_argb_visual = true,
+	own_window_argb_value = 200,
+	border_inner_margin = 16,
+	stippled_borders = 0,
+	update_interval = 1.0,
+	uppercase = false,
+	use_spacer = 'none',
+	show_graph_scale = false,
+	show_graph_range = false,
+
+--colors
+	
+-- previous palet
+--	color1='#009977', --dark green
+--	color2='#00E27E', --light green
+--	color3='#E28F00', --orange
+--	color4='#E3E53F', --yellow
+--	color5='#2A3B59', --dark blue
+--	color6='#2A648A', --light blue
+--	color7='#CB0004', --red
+--	color8='#EB4434', --pink
+--	color9='#BE2FDD', --purple
+
+
+	color1='#98971a', --dark green
+	color2='#b8bb26', --light green
+	color3='#fe8019', --orange
+	color4='#fabd2f', --yellow
+	color5='#458588', --dark blue
+	color6='#83a598', --light blue
+	color7='#cc241d', --red
+	color8='#fb4934', --pink
+	color9='#b16286', --purple
+
+}
+
+conky.text = [[
+${voffset 48}
+${color3}${font :size=24}$alignc${time %B} ${time %e}${font}
+${color4}$alignr${time %H:%M}
+${color3}${voffset 8}${font Hack Nerd Font:style=Medium:size=16}CPU ${hr 2}${font}${voffset 8}${color}
+${color4}${color} Frequency:$alignr${freq_g} GHz
+${color4}爛${color} Usage:$alignr$cpu%
+${color4}${color} Temp: ${alignr}${acpitemp}糖
+${color3}${voffset 8}${font Hack Nerd Font:style=Medium:size=16}GPU ${hr 2}${font}${voffset 8}${color}
+${color4}${color} Frequency:${alignr}${nvidia gpufreq} MHz
+${color4}${color} Memory:${alignr}${nvidia memfreq} MHz
+${color4}爛${color} Usage: $alignr${exec nvidia-settings -tq GPUUtilization | awk -F '[,= ]' '{ print $2 }'}%
+${color4}${color} Temp: ${alignr}${execi 60 nvidia-settings -query [gpu:0]/GPUCoreTemp -t}糖
+${color3}${voffset 8}${font Hack Nerd Font:style=Medium:size=16}Memory ${hr 2}${font}${voffset 8}${color}
+${color4}${color} $mem / $memmax $alignr$memperc% ${membar 8, 100}
+${color3}${voffset 8}${font Hack Nerd Font:style=Medium:size=16}Network ${hr 2}${font}${voffset 8}${color}
+${color4}${color} Public IP:$alignr ${exec wget http://ipinfo.io/ip -qO -}
+${color4}${color} WiFi:$alignr ${addr wlp9s0}
+${color4}爛${color} Signal:${alignr} ${wireless_link_qual_perc wlp9s0}% ${wireless_link_bar 8,100 wlp9s0}
+${color4}${color} Up:        $alignr  ${upspeedf wlp9s0}
+${color4}${color} Down:   $alignr ${downspeedf wlp9s0}
+${color4}${color} Upload: ${alignr}${totalup wlp9s0}
+${color4}${color} Download: ${alignr}${totaldown wlp9s0}
+${color4}泌${color} Connected to: $alignr${wireless_essid wlp9s0}
+${color3}${voffset 8}${font Hack Nerd Font:style=Medium:size=16}Storage ${hr 2}${font}${voffset 8}${color}
+${color4}${color} ${fs_used /}/${fs_size /} ${alignr}${fs_used_perc /}% ${fs_bar 8,100 /}
+${color4}${color} ${fs_used /mnt/1TB}/${fs_size /mnt/1TB} ${alignr}${fs_used_perc /mnt/1TB}% ${fs_bar 8,100 /mnt/1TB}
+${color3}${voffset 8}${font Hack Nerd Font:style=Medium:size=16}Battery ${hr 2}${font}${voffset 8}${color}
+${color4}${color} Level: $alignr${battery_percent}% ${battery_bar 8,100}
+#蓼
+${voffset 70}
+]]

@@ -1,0 +1,19 @@
+# import = [ "~/.config/alacritty/themes/themes/catppuccin.toml" ]
+# import = [ "~/.config/alacritty/themes/themes/kanagawa_dragon.toml" ]
+# import = [ "~/.config/alacritty/themes/themes/alacritty_0_12.toml" ]
+# import = [ "~/.config/alacritty/themes/themes/dracula.toml" ]
+# import = [ "~/.config/alacritty/themes/themes/nordic.toml" ]
+# import = [ "~/.config/alacritty/themes/themes/nord.toml" ]
+# import = [ "~/.config/alacritty/themes/themes/tokyo-night.toml" ]
+# import = [ "~/.config/alacritty/themes/themes/tokyo-night-storm.toml" ]
+# import = [ "~/.config/alacritty/themes/themes/solarized_dark.toml" ]
+# import = [ "~/.config/alacritty/themes/themes/doom_one.toml" ]
+# import = [ "~/.config/alacritty/themes/themes/" ]
+
+[window]
+opacity = 0.8
+
+[font]
+# normal = { family = "Hack Nerd Font", style = "Regular" }
+normal = { family = "Roboto Mono Nerd Font", style = "Regular" }
+size = 8

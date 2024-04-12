@@ -1,0 +1,35 @@
+XF86AudioRaiseVolume
+	amixer set Master 5%+
+
+XF86AudioLowerVolume
+	amixer set Master 5%-
+
+XF86AudioMute
+	amixer set Master toggle
+
+XF86MonBrightnessUp
+	brightnessctl set 5%+
+
+XF86MonBrightnessDown
+	brightnessctl set 5%-
+
+XF86Explorer
+	pcmanfm
+
+Print
+	flameshot gui
+
+alt + w
+	firefox
+
+alt + z
+	zathura
+
+alt + a
+	anki
+
+alt + shift + p
+	rofi -show drun
+
+alt + shift + w
+	rofi -show window
