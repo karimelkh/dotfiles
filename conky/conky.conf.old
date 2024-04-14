@@ -14,7 +14,7 @@ conky.config = {
 	draw_outline = false,
 	draw_shades = false,
 	use_xft = true,
-	font = 'Hack Nerd Font:size=11',
+	font = 'Roboto Mono Nerd Font:size=11',
 	gap_x = 14,
 	gap_y = 0,
 	no_buffers = true,
@@ -71,18 +71,18 @@ conky.text = [[
 ${voffset 48}
 ${color3}${font :size=24}$alignc${time %B} ${time %e}${font}
 ${color4}$alignr${time %H:%M}
-${color3}${voffset 8}${font Hack Nerd Font:style=Medium:size=16}CPU ${hr 2}${font}${voffset 8}${color}
+${color3}${voffset 8}${font Roboto Mono Nerd Font:style=Medium:size=16}CPU ${hr 2}${font}${voffset 8}${color}
 ${color4}${color} Frequency:$alignr${freq_g} GHz
 ${color4}爛${color} Usage:$alignr$cpu%
 ${color4}${color} Temp: ${alignr}${acpitemp}糖
-${color3}${voffset 8}${font Hack Nerd Font:style=Medium:size=16}GPU ${hr 2}${font}${voffset 8}${color}
+${color3}${voffset 8}${font Roboto Mono Nerd Font:style=Medium:size=16}GPU ${hr 2}${font}${voffset 8}${color}
 ${color4}${color} Frequency:${alignr}${nvidia gpufreq} MHz
 ${color4}${color} Memory:${alignr}${nvidia memfreq} MHz
 ${color4}爛${color} Usage: $alignr${exec nvidia-settings -tq GPUUtilization | awk -F '[,= ]' '{ print $2 }'}%
 ${color4}${color} Temp: ${alignr}${execi 60 nvidia-settings -query [gpu:0]/GPUCoreTemp -t}糖
-${color3}${voffset 8}${font Hack Nerd Font:style=Medium:size=16}Memory ${hr 2}${font}${voffset 8}${color}
+${color3}${voffset 8}${font Roboto Mono Nerd Font:style=Medium:size=16}Memory ${hr 2}${font}${voffset 8}${color}
 ${color4}${color} $mem / $memmax $alignr$memperc% ${membar 8, 100}
-${color3}${voffset 8}${font Hack Nerd Font:style=Medium:size=16}Network ${hr 2}${font}${voffset 8}${color}
+${color3}${voffset 8}${font Roboto Mono Nerd Font:style=Medium:size=16}Network ${hr 2}${font}${voffset 8}${color}
 ${color4}${color} Public IP:$alignr ${exec wget http://ipinfo.io/ip -qO -}
 ${color4}${color} WiFi:$alignr ${addr wlp9s0}
 ${color4}爛${color} Signal:${alignr} ${wireless_link_qual_perc wlp9s0}% ${wireless_link_bar 8,100 wlp9s0}
@@ -91,10 +91,10 @@ ${color4}${color} Down:   $alignr ${downspeedf wlp9s0}
 ${color4}${color} Upload: ${alignr}${totalup wlp9s0}
 ${color4}${color} Download: ${alignr}${totaldown wlp9s0}
 ${color4}泌${color} Connected to: $alignr${wireless_essid wlp9s0}
-${color3}${voffset 8}${font Hack Nerd Font:style=Medium:size=16}Storage ${hr 2}${font}${voffset 8}${color}
+${color3}${voffset 8}${font Roboto Mono Nerd Font:style=Medium:size=16}Storage ${hr 2}${font}${voffset 8}${color}
 ${color4}${color} ${fs_used /}/${fs_size /} ${alignr}${fs_used_perc /}% ${fs_bar 8,100 /}
 ${color4}${color} ${fs_used /mnt/1TB}/${fs_size /mnt/1TB} ${alignr}${fs_used_perc /mnt/1TB}% ${fs_bar 8,100 /mnt/1TB}
-${color3}${voffset 8}${font Hack Nerd Font:style=Medium:size=16}Battery ${hr 2}${font}${voffset 8}${color}
+${color3}${voffset 8}${font Roboto Mono Nerd Font:style=Medium:size=16}Battery ${hr 2}${font}${voffset 8}${color}
 ${color4}${color} Level: $alignr${battery_percent}% ${battery_bar 8,100}
 #蓼
 ${voffset 70}

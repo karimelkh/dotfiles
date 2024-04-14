@@ -13,16 +13,23 @@ XF86MonBrightnessUp
 XF86MonBrightnessDown
 	brightnessctl set 5%-
 
+XF86Search
+	firefox duckduckgo.com
+
 XF86Explorer
 	pcmanfm
 
 Print
 	flameshot gui
 
+Menu
+	rofi -show window
+
 alt + w
 	firefox
 
-alt + z
+# alt + z
+alt + shift + d
 	zathura
 
 alt + a
@@ -33,3 +40,6 @@ alt + shift + p
 
 alt + shift + w
 	rofi -show window
+
+super + shift + c
+	$HOME/.config/dwm/scripts/toggle_conky.sh
