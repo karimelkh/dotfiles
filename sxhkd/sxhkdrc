@@ -43,3 +43,6 @@ alt + shift + w
 
 super + shift + c
 	$HOME/.config/dwm/scripts/toggle_conky.sh
+
+super + l
+	betterlockscreen -l dim
