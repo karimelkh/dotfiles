@@ -1,0 +1,49 @@
+[global]
+layer								= top
+font								= "Roboto Mono Nerd Font"
+follow								= none
+notification_limit					= 2
+
+# size, position and appearance
+frame_width							= 1
+width								= 400
+height								= 400
+origin								= top-right
+offset								= 0x24
+corner_radius						= 0
+
+# progress bar
+progress_bar						= true
+progress_bar_horizontal_alignment	= center
+progress_bar_height					= 10
+progress_bar_min_width				= 300
+progress_bar_max_width				= 300
+progress_bar_frame_width			= 1
+progress_bar_corner_radius			= 0
+
+# icons
+min_icon_size						= 24
+
+indicate_hidden						= false
+separator_height					= 2
+padding								= 8
+horizontal_padding					= 8
+text_icon_padding					= 16
+gap_size							= 6
+separator_color						= frame
+
+# behavior
+sort								= update
+format								= "<big><b><span foreground='#d79921'>%s</span></b></big>\n%b"
+show_indicators						= false
+mouse_left_click					= do_action
+title								= "Dunst"
+class								= "dunst"
+timeout								= 3
+
+highlight							= "#d79921"
+background							= "#282828"
+foreground							= "#d5c4a1"
+frame_color							= "#85796f"
+
+# vim:ft=cfg

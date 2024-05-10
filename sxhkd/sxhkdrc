@@ -25,10 +25,12 @@ Print
 Menu
 	rofi -show window
 
+ctrl + Escape
+	$HOME/scripts/dmenu/exit.sh
+
 alt + w
 	firefox
 
-# alt + z
 alt + shift + d
 	zathura
 
@@ -43,6 +45,13 @@ alt + shift + w
 
 super + shift + c
 	$HOME/.config/dwm/scripts/toggle_conky.sh
+
+super + shift + w
+	$HOME/scripts/dmenu/wallpapers.sh
+
+super + shift + s
+	pkill sxhkd
+	sxhkd &
 
 super + l
 	betterlockscreen -l dim

@@ -18,7 +18,8 @@ static const char *splitdelim        = " | ";       /* Character used for separa
 static const char *fonts[]          = { "Roboto Mono Nerd Font:size=12", "fontawesome:size=12" };
 static const char dmenufont[]       = "Roboto Mono Nerd Font:size=12";
 
-#include "color_schemes/default_one.h"
+// #include "color_schemes/default_one.h"
+#include "color_schemes/gruv.h"
 
 static const unsigned int baralpha = 140;
 static const unsigned int borderalpha = 140;
