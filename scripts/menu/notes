@@ -1,0 +1,14 @@
+#!/bin/dash
+
+font="Roboto Mono Nerd Font"
+prompt=" "
+notes_dir="$HOME/notes"
+
+note_file=$(ls "$notes_dir" | dmenu -i -fn "$font" -p "$prompt")
+
+if [ -z "$note_file" ]
+then
+	echo "nothing selected"
+else
+	alacritty -e nvim "$notes_dir/$note_file"
+fi

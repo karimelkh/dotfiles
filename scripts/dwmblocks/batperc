@@ -1,0 +1,24 @@
+#!/bin/bash
+
+bperc=$(acpi -b | awk '{print $4}' | head -1 | tr -d '%,')
+
+# get proper icon
+if [ "$bperc" -ge 90 ]
+then
+	bicon=""
+elif [ "$bperc" -ge 70 ]
+then
+	bicon=""
+elif [ "$bperc" -ge 50 ]
+then
+	bicon=""
+elif [ "$bperc" -ge 25 ]
+then
+	bicon=""
+elif [ "$bperc" -lt 25 ]
+then
+	bicon=""
+fi
+
+# echo -e "$color$bicon  $bperc%$reset"
+echo "$bicon  $bperc%"

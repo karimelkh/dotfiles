@@ -1,0 +1,13 @@
+#!/bin/dash
+
+prompt="󰃠"
+start=$(brightnessctl | tail -3 | head -1 | awk '{print $4}' | sed 's/[^0-9]*//g')
+steps=5
+
+levels=$(wjt -s "$steps" -x "$start" -p "$prompt")
+lvl=$(echo "$levels" | tail -1)
+echo "$lvl"%
+
+brightnessctl set "$lvl"% > /dev/null
+
+pkill -RTMIN+20 dwmblocks

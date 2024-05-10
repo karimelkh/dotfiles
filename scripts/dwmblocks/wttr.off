@@ -1,0 +1,18 @@
+#!/bin/bash
+
+city="safi"
+ping_dest="0.0.0.333"
+# ping_dest="wttr.in"
+wttr="n/a"
+max_time=5
+
+# ping -q -c 1 $ping_dest 2> /dev/null
+ping -c 1 "$ping_dest"
+
+if [ $? -eq 0 ]
+then
+	wttr=$(curl -q -m "$max_time" "wttr.in/$city?format=%t" tail -1)
+fi
+
+echo "󰖐  $wttr" | tail -1
+# echo "󰖐  $wttr"

@@ -1,17 +1,17 @@
 XF86AudioRaiseVolume
-	amixer set Master 5%+
+	amixer set Master 5%+; pkill -RTMIN+21 dwmblocks
 
 XF86AudioLowerVolume
-	amixer set Master 5%-
+	amixer set Master 5%-; pkill -RTMIN+21 dwmblocks
 
 XF86AudioMute
-	amixer set Master toggle
+	amixer set Master toggle; pkill -RTMIN+21 dwmblocks
 
 XF86MonBrightnessUp
-	brightnessctl set 5%+
+	brightnessctl set 5%+; pkill -RTMIN+20 dwmblocks
 
 XF86MonBrightnessDown
-	brightnessctl set 5%-
+	brightnessctl set 5%-; pkill -RTMIN+20 dwmblocks
 
 XF86Search
 	firefox duckduckgo.com
@@ -23,35 +23,49 @@ Print
 	flameshot gui
 
 Menu
-	rofi -show window
+	$HOME/scripts/menu.sh
 
-ctrl + Escape
-	$HOME/scripts/dmenu/exit.sh
+alt + shift + Return
+	alacritty
 
-alt + w
-	firefox
+super + Escape
+	$HOME/scripts/menu/exit
 
-alt + shift + d
-	zathura
-
-alt + a
+super + a
 	anki
 
-alt + shift + p
+super + d
+	zathura
+
+super + f
+	pcmanfm
+
+super + l
+	betterlockscreen -l dim
+
+super + m
+	$HOME/scripts/menu.sh
+
+super + n
+	$HOME/scripts/menu/notes
+
+super + p
 	rofi -show drun
 
-alt + shift + w
-	rofi -show window
+super + v
+	mpv --player-operation-mode=pseudo-gui
+
+super + w
+	firefox
 
 super + shift + c
 	$HOME/.config/dwm/scripts/toggle_conky.sh
 
-super + shift + w
-	$HOME/scripts/dmenu/wallpapers.sh
+super + shift + p
+	rofi -show window
 
 super + shift + s
-	pkill sxhkd
-	sxhkd &
+	pkill sxhkd; sxhkd &
 
-super + l
-	betterlockscreen -l dim
+super + shift + w
+	$HOME/scripts/menu/wallpapers

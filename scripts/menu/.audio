@@ -1,0 +1,12 @@
+#!/bin/dash
+
+prompt="󰕾"
+start=$(amixer get Master | tail -2 | head -1 | awk '{print $5}' | sed 's/[^0-9]*//g')
+steps=5
+
+volumes=$(wjt -s "$steps" -x "$start" -p "$prompt")
+volume=$(echo "$volumes" | tail -1)
+
+amixer set Master "$volume"% > /dev/null
+
+pkill -RTMIN+21 dwmblocks

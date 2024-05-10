@@ -1,0 +1,7 @@
+#!/bin/dash
+
+# ram=(free -m | grep Mem | awk '{printf "%.0f%\n", $3/$2*100}')
+
+ram=$(free -h | awk '/^Mem:/ {print $3"/"$2}')
+
+echo "   $ram"

@@ -1,0 +1,10 @@
+#!/bin/dash
+
+# Get the current brightness info using light command
+bright_info=$(brightnessctl info)
+
+# Extract the brightness percentage using sed
+bright_perc=$(echo "$bright_info" | sed -n 's/.*(\([0-9]*\)%).*/\1/p')
+
+echo "󰃠  $bright_perc%"
+

@@ -1,0 +1,3 @@
+#!/bin/bash
+
+echo "[conky.sh] i am working!"

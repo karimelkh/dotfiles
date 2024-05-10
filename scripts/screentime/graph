@@ -1,0 +1,27 @@
+#!/bin/dash
+
+get="$HOME/scripts/screentime/get-2"
+log_dir="$HOME/.var/log/screentime"
+
+draw_stars() {
+	local char="*"
+	local count=$1
+	local i=1
+	while [ $i -le $count ]
+	do
+		echo -n " $char"
+		i=$(( $i + 1))
+	done
+	echo ""
+}
+
+echo -n "DATE\t\tHOURS\n"
+
+for i in $(ls "$log_dir")
+do
+	log_date=$(echo "$i" | sed 's/.log//g')
+	echo -n "$log_date\t"
+	hrs=$("$get" -h "$log_date")
+	echo -n "${hrs}h\t"
+	draw_stars "$hrs"
+done

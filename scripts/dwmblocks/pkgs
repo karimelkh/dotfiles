@@ -1,0 +1,7 @@
+#!/bin/dash
+
+nbr_updates=$(pacman -Qu | wc -l)
+
+# echo "󰮯  $nbr_updates"
+echo "  $nbr_updates"
+

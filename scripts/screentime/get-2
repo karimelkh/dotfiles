@@ -1,0 +1,58 @@
+#!/bin/dash
+
+current_date=$(date +%d-%m-%Y)
+
+print_h() {
+	if [ -z "$1" ]
+	then
+		local log_date="$current_date"
+	else
+		local log_date="$1"
+	fi
+	
+	local log_file="$HOME/.var/log/screentime/$log_date.log"
+	
+	if [ ! -e "$log_file" ]
+	then
+		echo "no entry for $1"
+		log_file="$HOME/.var/log/screentime/$current_date.log"
+	fi
+	input_mins=$(cat "$log_file" | wc -l)
+	hours=$(expr "$input_mins" / 60)
+	echo "$hours"
+}
+
+print_d() {
+	if [ -z "$1" ]
+	then
+		local log_date="$current_date"
+	else
+		local log_date="$1"
+	fi
+	
+	local log_file="$HOME/.var/log/screentime/$log_date.log"
+	
+	if [ ! -e "$log_file" ]
+	then
+		echo "no entry for $1"
+		log_file="$HOME/.var/log/screentime/$current_date.log"
+	fi
+
+	input_mins=$(cat "$log_file" | wc -l)
+	hours=$(expr "$input_mins" / 60)
+	minutes=$(expr "$input_mins" % 60)
+	
+	echo "󰈈  ${hours}h ${minutes}m"
+}
+
+case "$1" in
+	"-h") # print total hours
+		print_h "$2" 
+		;;
+	"-d") # print total screen time
+		print_d "$2"
+		;;
+	*) # print the total screen time of today
+		print_d
+		;;
+esac

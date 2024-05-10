@@ -1,0 +1,16 @@
+#!/bin/bash
+
+font="Roboto Mono Nerd Font"
+prompt="> "
+bars="slstatus\ndwmblocks"
+
+selected_bar=$(echo -e "$bars" | dmenu -i -fn "$font" -p "$dwmblocks")
+
+# START temp solution
+killall slstatus
+killall dwmblocks
+# END temp solution
+
+"$selected_bar" &
+echo "$selected_bar is set as the status bar"
+

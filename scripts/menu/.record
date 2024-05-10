@@ -1,0 +1,13 @@
+#!/bin/dash
+
+font="Roboto Mono Nerd Font"
+prompt="󰑋 "
+
+out_file=$(echo " " | dmenu -p "$prompt" -fn "$font")
+
+if [ -z "$out_file" ]
+then
+	exit
+else
+	ffmpeg -f x11grab -s 1920x1080 -i :0.0 "$out_file"
+fi

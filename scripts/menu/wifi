@@ -1,0 +1,19 @@
+#!/bin/dash
+
+font="Roboto Mono Nerd Font"
+prompt="󰖩 "
+
+notify-send "getting wi-fi networks..."
+
+wifi_list=$(nmcli --fields "SSID" device wifi list | sed 1d | sed "/--/d" | sed 's/ //g')
+
+chosen_network=$(printf "%s\n" "$wifi_list" | uniq -u | dmenu -i -p "$prompt" -fn "$font")
+
+chosen_id=$(echo "$chosen_network" | awk '{print $1}')
+
+if [ "$chosen_network" = "" ]
+then
+	exit
+else
+	nmcli device wifi connect "$chosen_network"
+fi

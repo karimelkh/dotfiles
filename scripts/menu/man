@@ -1,0 +1,14 @@
+#!/usr/bin/dash
+
+font="Roboto Mono Nerd Font"
+prompt="󱔗 "
+
+manual="$(man -k . | awk '{print $1}' | dmenu -p "$prompt" -fn "$font")"
+
+if [ ! -z "$manual" ]
+then
+    alacritty --command man $manual
+fi
+
+exit 0
+

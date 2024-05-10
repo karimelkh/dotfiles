@@ -1,0 +1,60 @@
+#!/bin/dash
+
+font="Roboto Mono Nerd Font"
+prompt="󰖩 "
+
+notify-send "getting wi-fi networks..."
+
+# wifi_list=$(nmcli --fields "SECURITY,SSID" device wifi list | awk '{print $2}' | sed 1d | sed "/--/d")
+wifi_list=$(nmcli --fields "SSID" device wifi list | sed 1d | sed "/--/d")
+
+connected=$(nmcli -fields WIFI g | tail -1)
+if [ "$connected" = "enabled" ]
+then
+	echo "connected = enabled"
+	# toggle="󰖪  Disable Wi-Fi"
+	toggle="no wifi"
+elif [ "$connected" = "disabled" ]
+then
+	echo "connected = disabled"
+	# toggle="󰖩  Enable Wi-Fi"
+	toggle="yes wifi"
+else
+	toggle="my_enabled"
+fi
+
+echo $toggle
+
+# Use dmenu to select wifi network
+# chosen_network=$(printf "%s\n%s\n" "$toggle" "$wifi_list" | uniq -u | dmenu -i -p "$prompt" -fn "$font")
+chosen_network=$(printf "%s\n" "$wifi_list" | uniq -u | dmenu -i -p "$prompt" -fn "$font")
+
+# Get name of connection
+# read -r chosen_id <<< "${chosen_network:3}"
+chosen_id=$(echo "$chosen_network" | awk '{print $2}')
+
+if [ "$chosen_network" = "" ]
+then
+	exit
+elif [ "$chosen_network" = "󰖩  Enable Wi-Fi" ]
+then
+	nmcli radio wifi on
+elif [ "$chosen_network" = "󰖪  Disable Wi-Fi" ]
+then
+	nmcli radio wifi off
+else
+	# Message to show when connection is activated successfully
+	success_message="You are now connected to the Wi-Fi network \"$chosen_id\"."
+	# Get saved connections
+	saved_connections=$(nmcli -g NAME connection)
+	if [ $(echo "$saved_connections" | grep -w "$chosen_id") = "$chosen_id" ]
+	then
+		nmcli connection up id "$chosen_id" | grep "successfully" && notify-send "Connection Established" "$success_message"
+	else
+		if [ "$chosen_network" -eq "" ]
+		then
+			wifi_password=$(dmenu -P -p "" -fn "$font" )
+		fi
+		nmcli device wifi connect "$chosen_id" password "$wifi_password" | grep "successfully" && notify-send "Connection Established" "$success_message"
+	fi
+fi

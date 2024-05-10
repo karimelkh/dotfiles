@@ -1,0 +1,30 @@
+#!/bin/dash
+
+current_date=$(date +%d-%m-%Y)
+
+if [ -n "$1" ]
+then
+	log_date="$1"
+else
+	log_date="$current_date"
+fi
+
+log_file="$HOME/.var/log/screentime/$log_date.log"
+
+if [ ! -e "$log_file" ]
+then
+	echo "no entry for $1"
+	log_file="$HOME/.var/log/screentime/$current_date.log"
+fi
+
+input_mins=$(cat "$log_file" | wc -l)
+hours=$(expr "$input_mins" / 60)
+minutes=$(expr "$input_mins" % 60)
+
+if [ "$1" = "-h" ]
+then
+	echo "$hours"
+fi
+
+echo "󰈈  ${hours}h ${minutes}m"
+

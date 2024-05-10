@@ -1,0 +1,9 @@
+#!/bin/dash
+
+mountable=$(lsblk -l | grep "part $")
+# handle case where no mountable drive
+
+chosen=$(echo "$mountable" | awk '{print $1" ("$4")"}' | dmenu -i -p "󱊞 " -fn "Roboto Mono Nerd Font" | awk '{ print "/dev/"$1}')
+# handle the case when nothing selected
+
+

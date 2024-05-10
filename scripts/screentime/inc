@@ -1,0 +1,8 @@
+#!/bin/dash
+
+current_date=$(date +%d-%m-%Y)
+log_file="$HOME/.var/log/screentime/$current_date.log"
+
+# echo "+1" >> "$log_file"
+date >> "$log_file"
+

@@ -1,0 +1,28 @@
+#!/bin/bash
+
+font="Roboto Mono Nerd Font"
+prompt="󰩈 "
+valid_options="sleep\nreboot\nshutdown"
+
+# show options: sleep, reboot, and shutdown
+selected_option=$(echo -e $valid_options | dmenu -p "$prompt" -fn "$font")
+# take returned option and decide what to do
+
+case $selected_option in
+	"sleep")
+		betterlockscreen -l dim
+		;;
+
+	"reboot")
+		reboot
+		;;
+
+	"shutdown")
+		shutdown now
+		;;
+
+	*)
+		echo "[exit.sh] invalid choice: $selected_option" >&2
+		;;
+esac
+

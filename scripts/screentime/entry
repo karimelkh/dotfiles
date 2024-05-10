@@ -1,0 +1,9 @@
+#!/bin/dash
+
+log_dir="$HOME/.var/log/screentime"
+
+for log_file in $(ls "$log_dir"/*.log)
+do
+	echo $(basename "$log_file")
+done
+

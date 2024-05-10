@@ -1,0 +1,22 @@
+#!/bin/dash
+
+# Get the current volume info using amixer
+audio_vol=$(amixer get Master | grep -oE "[0-9]+%")
+
+# Extract the volume percentage from the first occurrence
+audio_perc=$(echo "$audio_vol" | head -n 1 | sed 's/\([0-9]\+\)%.*/\1/')
+
+# off or on
+audio_stat=$(amixer get Master | head -6 | tail -1 | awk '{print $6}' | sed 's/[^a-z]//g')
+
+if [ "$audio_stat" = "on" ]
+then
+	if [ "$audio_perc" -eq 0 ]
+	then
+		echo "󰝟  0%"
+	else
+		echo "󰕾  $audio_perc%"
+	fi
+else
+	echo "󰝟  $audio_perc%"
+fi

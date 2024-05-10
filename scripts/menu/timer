@@ -1,0 +1,21 @@
+#!/bin/bash
+
+# TODO include a module for dwmblocks if possible
+# TODO add some logging functionality for tracking timers
+
+sowon="$HOME/scripts/menu/.hidden/sowon"
+notif_icon=""
+notif_sound="$HOME/media/vids/FireForce.mp4"
+font="Roboto Mono Nerd Font"
+prompt="󱎫 "
+durs="10\n20\n30\n40\n50\n60"
+
+selected_dur=$(echo -e "$durs" | dmenu -p "$prompt" -fn "$font")
+
+if [ -n "$selected_dur" ]
+then
+	notify-send -w "a timer is set to $selected_dur minutes" &
+	"$sowon" -p -e "$selected_dur"m &&
+	(notify-send "times up ($selected_dur minutes)" &&
+		mpv --no-video --volume=80 $notif_sound)
+fi

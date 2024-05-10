@@ -1,0 +1,5 @@
+#!/bin/dash
+
+# ffplay -window-title webcam -fast /dev/video0 &
+ffplay -window_title webcam -fast /dev/video0
+# ffplay -window-title webcam /dev/video0 &

@@ -1,0 +1,19 @@
+#!/bin/bash
+
+font="Roboto Mono Nerd Font"
+prompt="󰸉 "
+wp_dir="$HOME/.local/share/wallpapers"
+
+selected_wp=$(find $HOME/.local/share/wallpapers -type f -exec basename {} \; | shuf | dmenu -i -fn "$font" -p "$prompt")
+
+# if [ ! -z "$selected_wp" ]
+if [ -n "$selected_wp" ]
+then
+	feh --bg-fill "$wp_dir"/"$selected_wp"
+	export CUR_WP="$wp_dir"/"$selected_wp"
+	killall betterlockscreen
+	betterlockscreen -u "$CUR_WP" --fx dim &
+	notify-send -i "$CUR_WP" "wallpaper changed to $selected_wp"
+else
+	echo "nothing selected"
+fi
