@@ -1,0 +1,116 @@
+theme = "dark_plus"
+
+[editor]
+scrolloff = 5
+mouse = true
+default-yank-register = "+"
+middle-click-paste = true
+scroll-lines = 3
+shell = ["fish", "-c"]
+line-number = "relative"
+cursorline = false
+cursorcolumn = false
+continue-comments = true
+gutters = ["diagnostics", "spacer", "line-numbers", "spacer", "diff"]
+auto-completion = true
+path-completion = true
+auto-format = true
+idle-timeout = 250
+completion-timeout = 250
+preview-completion-insert = true
+completion-trigger-len = 2
+completion-replace = false
+auto-info = true
+true-color = false
+undercurl = false
+rulers = []
+bufferline = "always"
+color-modes = true
+text-width = 80
+workspace-lsp-roots = []
+default-line-ending = "native"
+insert-final-newline = false
+popup-border = "none"
+indent-heuristic = "hybrid"
+jump-label-alphabet = "abcdefghijklmnopqrstuvwxyz"
+clipboard-provider = "x-clip"
+
+[editor.statusline]
+left = ["mode", "version-control", "file-base-name"]
+center = []
+right = ["file-type", "diagnostics", "position"]
+separator = ""
+mode.normal = "NOR"
+mode.insert = "INS"
+mode.select = "SEL"
+
+[editor.lsp]
+enable = true
+display-messages = true
+display-progress-messages = true
+auto-signature-help = true
+display-inlay-hints = true
+display-signature-help-docs = true
+snippets = true
+
+[editor.cursor-shape]
+normal = "block"
+insert = "bar"
+select = "underline"
+
+[editor.file-picker]
+hidden = true
+follow-symlinks = true
+deduplicate-links = true
+parents = true
+ignore = true
+git-ignore = true
+git-global = true
+git-exclude = true
+max-depth = 7
+
+[editor.auto-save]
+focus-lost = false
+after-delay.enable = false
+after-delay.timeout = 3000
+
+[editor.search]
+smart-case = true
+wrap-around = true
+
+[editor.indent-guides]
+render = true
+character = "|"
+skip-levels = 0
+
+[editor.smart-tab]
+enable = true
+supersede-menu = false
+
+[keys.normal]
+"$" = "goto_line_end"
+0 = "goto_line_start"
+x = "extend_line_below"
+X = "extend_line_above"
+
+[keys.normal.b]
+c = ":buffer-close"
+n = ":buffer-next"
+p = ":buffer-previous"
+
+[keys.normal.g]
+b = { c = "toggle_block_comments" }
+# d = ":yank-diagnostic"
+c = "toggle_comments"
+
+[keys.normal.m]
+j = "move_line_down"
+k = "move_line_up"
+
+[keys.select]
+x = "extend_line_below"
+X = "extend_line_above"
+
+[keys.select.m]
+j = "move_visual_ine_down"
+k = "move_line_up"
